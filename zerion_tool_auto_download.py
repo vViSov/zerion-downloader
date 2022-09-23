@@ -48,8 +48,8 @@ def download_file(url):
         except:
             while True:
                 clearConsole()
-                print(f'Plik {path} nie może się tak nazywać. ')
-                path = input('Wprowadź własną nazwę dla tego pliku: ') + '.mp4'
+                print(f'The file {path} cannot be named like that.')
+                path = input('Enter your own name for this file: ') + '.mp4'
                 try:
                     with open(path, 'wb') as f:
                         for data in r.iter_content(chunk_size=None):
@@ -61,9 +61,9 @@ def download_file(url):
         size = get_file_size(path, SIZE_UNIT.MB)
         elaps = round(time.time() - start, 1)
         print()
-        print(f'> Pobrano plik: {path} | {round(size, 1)} MB | {elaps} Sek. | {l + 1} z {grabberTimes + 1} plików.')
+        print(f'> File downloaded: {path} | {round(size, 1)} MB | {elaps} Sec. | {l + 1} z {grabberTimes + 1} files.')
     else:
-        print('Nie udalo sie polaczyc z serwerem.')
+        print('Could not connect to the server.')
 
 browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 
@@ -74,9 +74,9 @@ try:
 
     browser.find_element(By.XPATH, '/html/body/div[3]/div[2]/div/div/div[2]/div[2]/div').click()
 except:
-    print('Wtyczka musi zostac dodana recznie.')
+    print('The plug must be added manually.')
 
-input('Czy wtyczka zostala dodana?')
+input('Has the plug been added?')
 clearConsole()
 
 try:
@@ -86,9 +86,9 @@ try:
 
     browser.find_element(By.XPATH, '/html/body/div[3]/div[2]/div/div/div[2]/div[2]/div').click()
 except:
-    print('Wtyczka musi zostac dodana recznie.')
+    print('The plug must be added manually.')
 
-input('Czy wtyczka zostala dodana?')
+input('Has the plug been added?')
 clearConsole()
 
 try:
@@ -98,9 +98,9 @@ try:
 
     browser.find_element(By.XPATH, '/html/body/div[3]/div[2]/div/div/div[2]/div[2]/div').click()
 except:
-    print('Wtyczka musi zostac dodana recznie.')
+    print('The plug must be added manually.')
 
-input('Czy wtyczka zostala dodana?')
+input('Has the plug been added?')
 clearConsole()
 
 urlsListDownload = []
@@ -117,16 +117,16 @@ l = 0
 clearConsole = lambda: os.system('cls')
 clearConsole()
 
-URL = input('> Wprowadz link do zeriona ktory prowadzi do calego serialu: ')
+URL = input('> Enter a link to zerion that leads to the entire series: ')
 
-nazwaFolderu = input('> Wprowadz nazwe folderu ktory ma utworzyc program do zapisania w nim plikow: ')
+nazwaFolderu = input('> Enter the name of the folder which is to create the program to save files in it: ')
 
 while True:
     clearConsole()
     if os.path.exists(nazwaFolderu):
-        print(f'> Folder z nazwą "{nazwaFolderu}" już istnieje!')
+        print(f'> Directory with the name "{nazwaFolderu}" already exists!')
         print()
-        nazwaFolderu = input('Wprowadź nazwę inną folderu: ')
+        nazwaFolderu = input('Enter a different folder name: ')
         continue
     else:
         clearConsole()
@@ -134,10 +134,10 @@ while True:
         try:
             os.mkdir(nazwaFolderu)
             os.chdir(nazwaFolderu)
-            print(f'> Utworzono folder o nazwe: "{nazwaFolderu}".')
+            print(f'> A folder has been created with the name: "{nazwaFolderu}".')
             break
         except:
-            nazwaFolderu = input('> Folder nie moze byc tak nazwany, wprowadź inną nazwę folderu: ')
+            nazwaFolderu = input('> The folder cannot be named like this, enter a different folder name: ')
 
 clearConsole()
 
@@ -177,7 +177,7 @@ for clickCounts in range(len(linkSerialu)):
             el3 = browser.find_element(By.XPATH, '//*[@id="episode-page"]/div/div[1]/div[2]/table/tbody/tr[3]')
             el4 = browser.find_element(By.XPATH, '//*[@id="episode-page"]/div/div[1]/div[2]/table/tbody/tr[4]')
         except:
-            print('Nie odnaleziono elementu HTML.')
+            print('HTML element not found.')
 
         if 'highload' in el1.get_attribute('innerHTML'):
             browser.find_element(By.XPATH, '//*[@id="episode-page"]/div/div[1]/div[2]/table/tbody/tr[1]/td[3]/div').click()
@@ -191,10 +191,10 @@ for clickCounts in range(len(linkSerialu)):
         elif 'highload' in el3.get_attribute('innerHTML'):
             browser.find_element(By.XPATH, '//*[@id="episode-page"]/div/div[1]/div[2]/table/tbody/tr[4]/td[3]/div').click()
         else:
-            print('> Otrzymano linki.')
+            print('> Links received.')
             break
     except:
-        print('> Nie odnaleziono elementu HTML.')
+        print('> HTML element not found.')
     
     time.sleep(1)
 
@@ -203,7 +203,7 @@ for clickCounts in range(len(linkSerialu)):
     if playerCaptcha == 'display: flex;':
         print()
         print('- - - - ' * 3)
-        print('> Łamanie hCaptcha...')
+        print('> Breaking hCaptcha...')
         print('- - - - ' * 3)
         print()
         while playerCaptcha == 'display: flex;':
@@ -212,7 +212,7 @@ for clickCounts in range(len(linkSerialu)):
         
         print()
         print('- - - - ' * 3)
-        print('> hCaptcha zostało Złamane...')
+        print('> hCaptcha has been Broken...')
         print('- - - - ' * 3)
         print()
         srcUrl = browser.find_element(By.ID, 'pframe')
@@ -227,11 +227,11 @@ for clickCounts in range(len(linkSerialu)):
 
     if clickCounts % 6 == 0:
         print()
-        print('> Nie zapomnij o VPN!')
+        print("> Don't forget about a VPN!")
         print()
         print()
 
-    print(f'> Łamanie hCaptcha nie jest wymagane: {clickCounts + 1}: {srcUrl.get_attribute("src")}')
+    print(f'> Breaking the hCaptcha is not required: {clickCounts + 1}: {srcUrl.get_attribute("src")}')
 
     listOfWhatUrl = urlsListDownload[clickCounts][slice(20)]
 
@@ -243,8 +243,8 @@ for clickCounts in range(len(linkSerialu)):
         namesShow.append(nazwaSerialu[clickCounts])
 
 for showCounts in range(len(nazwa)):
-    print(f'Serial: {nazwaSerialu[showCounts]} -> {urlsListDownload[showCounts]}')
-print(f'Znaleziono odcinków: {nazwaCount + 1}')
+    print(f'Series: {nazwaSerialu[showCounts]} -> {urlsListDownload[showCounts]}')
+print(f'Episodes found: {nazwaCount + 1}')
 
 for grabberTimes in range(len(urlsListDownload)):
     try:
@@ -255,7 +255,7 @@ for grabberTimes in range(len(urlsListDownload)):
         time.sleep(1.5)
     except:
         print()
-        print(f'> Plku wideo nie odnaleziono: {urlsListDownload[grabberTimes]}')
+        print(f'> Video file not found: {urlsListDownload[grabberTimes]}')
         print()
         continue
 
@@ -268,6 +268,6 @@ req = ThreadPool(50).imap_unordered(download_file, grabbedRealUrlsList)
 for x in req:
     l += 1
 
-print(f'Ilosc niedostepnych plikow: {l + 1 - grabberTimes + 1}')
+print(f'Number of unavailable files: {l + 1 - grabberTimes + 1}')
 
-print('Pobrano wszystkie pliki.')
+print('All files were downloaded.')
